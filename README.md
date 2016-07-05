@@ -1,8 +1,9 @@
 # Smuggler
 
 Smuggler allows you to inject code bundles or frameworks into an application running in the iOS Simulator
-after it has started running. Looking ahead to Xcode 8, this is could be useful for tooling if the
-current approach using plugins and lldb commands is no longer available.
+after it has started running. Looking ahead to Xcode 8, this is could be useful for tooling such as
+[Injection for Xcode](https://github.com/johnno1962/injectionforxcode) or [Xprobe](https://github.com/johnno1962/Xprobe)
+if the current approach using plugins and lldb commands is no longer available.
 
 To use this Project, clone the Repo, select "Smuggler" Scheme and run. This starts a menu bar agent for
 the process. While this app is running you can use the command line tool ~/bin/smuggler to force loading
@@ -11,8 +12,8 @@ great unfortunately due how the code has to work. If you're sure the bundle has 
 the right architecture and Swift version it should work.
 
 Included in the app is an example bundle [SwiftTrace](https://github.com/johnno1962/SwiftTrace)
-(actually it's a framework - they are both dynamic libraries at the end of the day.) If you are
-running a Swift application in the simulator and also running the Smuggler app, if you use the 
+(actually it's an iOS framework - they are both dynamic libraries at the end of the day.) If you are
+running a Swift application in the simulator and also running the Smuggler app, if use the 
 menu bar, menu item "Trace Swift" it will log all non-final Swift (and Objective-C) calls made
 to classes in the main bundle as well as RxSwift if it is in use.
 
@@ -35,7 +36,10 @@ to classes in the main bundle as well as RxSwift if it is in use.
     RxSwift.SingleAssignmentDisposable.disposable.setter : RxSwift.Disposable11
 
 Note: In order to inject code between processes the Smuggle app installs a "privileged helper".
-The system will require you to give your administrator password when you first use it.
+The system will ask for your administrator password when you first use it. The helper binary
+can be removed at any time by executing:
+
+    sudo rm /Library/PrivilegedHelperTools/com.jh.Smuggler.Helper
 
 # MIT License
 
