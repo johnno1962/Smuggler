@@ -6,7 +6,7 @@
 //  Copyright © 2016 John Holdsworth. All rights reserved.
 //
 //  Repo: https://github.com/johnno1962/SwiftTrace
-//  $Id: //depot/SwiftTrace/SwiftTrace/SwiftTrace.swift#11 $
+//  $Id: //depot/Smuggler/SwiftTrace/SwiftTrace/SwiftTrace.swift#2 $
 //
 
 import Foundation
@@ -157,7 +157,7 @@ extension NSRegularExpression {
 /**
     default pattern of symbols to be excluded from tracing
  */
-public let swiftTraceDefaultExclusions = "\\.getter|retain]|_tryRetain]|_isDeallocating]|^\\+\\[(Reader_Base64|UI(NibStringIDTable|NibDecoder|CollectionViewData|WebTouchEventsGestureRecognizer)) |^.\\[UIView |UIButton _defaultBackgroundImageForType:andState:|RxSwift.ScheduledDisposable.dispose"
+public let swiftTraceDefaultExclusions = "\\.getter|retain]|_tryRetain]|_isDeallocating]|^\\+\\[(Reader_Base64|UI(NibStringIDTable|NibDecoder|CollectionViewData|WebTouchEventsGestureRecognizer)) |^.\\[UIView |UIButton _defaultBackgroundImageForType:andState:"
 
 /**
     Base class for SwiftTrace api through it's public class methods
@@ -200,17 +200,27 @@ public class SwiftTrace: NSObject {
             (exclusionRegexp == nil || !exclusionRegexp!.matches(symbol))
     }
 
-    public class func traceMainBundle() {
-        let mainBundle = NSBundle.mainBundle()
+    /**
+        Trace all classes in the specified bundle.
+        - parameter theBundle: NSBundle, the classes of which to trace
+     */
+    public class func traceClassesInBundle( theBundle: NSBundle ) {
         var nc: UInt32 = 0
         let classes = objc_copyClassList( &nc )
         for i in 0..<Int(nc) {
             let aClass: AnyClass = classes[i]!
 
-            if NSBundle(forClass: aClass) == mainBundle {
+            if NSBundle(forClass: aClass) == theBundle {
                 traceClass(aClass)
             }
         }
+    }
+
+    /**
+        Trace all classes in the application's main bundle.
+     */
+    public class func traceMainBundle() {
+        traceClassesInBundle( NSBundle.mainBundle() )
     }
 
     /**
@@ -218,23 +228,7 @@ public class SwiftTrace: NSObject {
         - parameter aClass: the class to specify the bundle
      */
     public class func traceBundleContainingClass( theClass: AnyClass ) {
-        var info = Dl_info()
-        if dladdr(unsafeBitCast(theClass, UnsafePointer<Void>.self), &info) == 0 {
-            print( "SwiftTrace: Could not find bundle for class \(theClass)" )
-            return
-        }
-        let bundlePath = info.dli_fname
-
-        var nc: UInt32 = 0
-        let classes = objc_copyClassList( &nc )
-        for i in 0..<Int(nc) {
-            let aClass: AnyClass = classes[i]!
-
-            if dladdr(unsafeBitCast(aClass, UnsafePointer<Void>.self), &info) != 0 &&
-                    info.dli_fname != nil && info.dli_fname == bundlePath {
-                traceClass(aClass)
-            }
-        }
+        traceClassesInBundle( NSBundle( forClass: theClass ) )
     }
 
     /**

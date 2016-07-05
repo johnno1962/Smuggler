@@ -40,8 +40,8 @@
     NSStatusBar *statusBar = [NSStatusBar systemStatusBar];
     self.statusItem = [statusBar statusItemWithLength:statusBar.thickness];
     self.statusItem.image = [NSImage imageNamed:@"Smuggler"];
-    self.statusItem.toolTip = @"Load Smuggler";
     self.statusItem.menu = self.statusMenu;
+    self.statusItem.toolTip = @"Smuggler";
     self.statusItem.highlightMode = YES;
     self.statusItem.enabled = YES;
     self.statusItem.title = @"";

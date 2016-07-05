@@ -12,7 +12,7 @@
 #include <stddef.h> // for ptrdiff_t
 
 typedef	struct	{
-	unsigned    dlopenPageOffset;
+	unsigned    dlopenPageOffset, dlerrorPageOffset;
 	char		bundleExecutableFileSystemRepresentation[1];
 }	mach_inject_bundle_stub_param;
 

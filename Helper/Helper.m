@@ -47,12 +47,9 @@ static FILE *logger;
 
     fprintf( logger, "payloadPath: %s\n", payloadPath );
 
-    size_t payloadPathSize = strlen( payloadPath ) + 1;
-    size_t paramSize = sizeof( unsigned ) + payloadPathSize;
+    size_t paramSize = sizeof( mach_inject_bundle_stub_param ) + strlen( payloadPath );
     mach_inject_bundle_stub_param *param = malloc( paramSize );
-    bcopy(payloadPath,
-          param->bundleExecutableFileSystemRepresentation,
-          payloadPathSize);
+    strcpy( param->bundleExecutableFileSystemRepresentation, payloadPath );
 
     char pathBuff[PROC_PIDPATHINFO_MAXSIZE];
     memset(pathBuff, 0, sizeof pathBuff);
@@ -68,10 +65,13 @@ static FILE *logger;
 
     fprintf( logger, "dyldPath: %s\n", [dyldPath UTF8String] );
 
-    NSString *output = [self run:[NSString stringWithFormat:@"nm \"%@\" | grep _dlopen", dyldPath]];
+    NSString *output = [self run:[NSString stringWithFormat:@"nm \"%@\" | grep ' _dlopen'", dyldPath]];
     [[NSScanner scannerWithString:output] scanHexInt:&param->dlopenPageOffset];
 
-    fprintf( logger, "dlopen offset: 0x%x\n", param->dlopenPageOffset );
+    output = [self run:[NSString stringWithFormat:@"nm \"%@\" | grep ' _dlerror'", dyldPath]];
+    [[NSScanner scannerWithString:output] scanHexInt:&param->dlerrorPageOffset];
+
+    fprintf( logger, "dlopen() offset: 0x%x, dlerror() offset: 0x%x\n", param->dlopenPageOffset, param->dlerrorPageOffset );
 
     pid = [self pidContaining:"/data/Containers/Bundle/Application/" returning:NULL];
     if( pid <= 0 )

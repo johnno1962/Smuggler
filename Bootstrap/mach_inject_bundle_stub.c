@@ -16,6 +16,8 @@
 #include <dlfcn.h>
 
 #include <sys/mman.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 /**************************
 *	
@@ -35,8 +37,6 @@ INJECT_ENTRY(
 pthread_entry(
 		mach_inject_bundle_stub_param	*param );
 	
-
-typedef void * (*dlopen_f)(const char * __path, int __mode);
 
 /*******************************************************************************
 *	
@@ -59,8 +59,8 @@ INJECT_ENTRY(
 	// On intel, per-pthread data is a zone of data that must be allocated.
 	// if not, all function trying to access per-pthread data (all mig functions for instance)
 	// will crash. 
-	extern void __pthread_set_self(char*);
-	__pthread_set_self(dummy_pthread_struct);
+	extern void _pthread_set_self(char*);
+	_pthread_set_self(dummy_pthread_struct);
 #endif
 
 //	fprintf(stderr, "mach_inject_bundle: entered in %s, codeOffset: %td, param: %p, paramSize: %lu\n",
@@ -92,21 +92,45 @@ void*
 pthread_entry(
               mach_inject_bundle_stub_param	*param ) {
 
+    // The following decent into darkness is brought to you by:
+    // https://en.wikipedia.org/wiki/Address_space_layout_randomization
+    //
+    // As a start, the first page actually loaded into memory is located.
+    // Shortly after this page will be libdyld which itself is a dylib.
+    // Which page is found using a offset determined in the Helper using "nm"
+    // in confunction with the first 16 bytes of the function assembly
+    // which seems to be shared across tested iOS versions (8.4 -> 10.0.)
+    //
+    // Move along, nothing to see here...
+
     char vec, *loadAddress = (char *)0x100000000;
     while ( !(mincore( loadAddress, PAGE_SIZE, &vec ) == 0 && vec & MINCORE_INCORE) )
         loadAddress += PAGE_SIZE;
 
-    static unsigned char dlopenInstrux[] = {0x55, 0x48, 0x89, 0xe5, 0x41, 0x56, 0x53, 0x41, 0x89, 0xf6, 0x48, 0x89, 0xfb, 0x48, 0x8b, 0x0d};
+    static unsigned char dlopenInstrux[] = {
+        0x55, 0x48, 0x89, 0xe5, 0x41, 0x56, 0x53, 0x41,
+        0x89, 0xf6, 0x48, 0x89, 0xfb, 0x48, 0x8b, 0x0d};
+    typedef void * (*dlopen_f)(const char * __path, int __mode);
     dlopen_f dlopen_ = NULL;
 
-    for ( char *searchAddress = loadAddress + param->dlopenPageOffset ; searchAddress < (char *)0x200000000 ; searchAddress += PAGE_SIZE )
-        if (memcmp( searchAddress, dlopenInstrux, sizeof dlopenInstrux ) == 0) {
-            dlopen_ = (dlopen_f)searchAddress;
+    for ( ; loadAddress < (char *)0x200000000 ; loadAddress += PAGE_SIZE )
+        if (memcmp(loadAddress + param->dlopenPageOffset, dlopenInstrux, sizeof dlopenInstrux) == 0) {
+            dlopen_ = (dlopen_f)(loadAddress + param->dlopenPageOffset);
             break;
         }
 
-    if (dlopen_)
-        dlopen_(param->bundleExecutableFileSystemRepresentation, RTLD_NOW);
+    const char *error = NULL;
+    if (!dlopen_)
+        error = "Could not locate dlopen()\n";
+    else if ( dlopen_(param->bundleExecutableFileSystemRepresentation, RTLD_NOW) == NULL )
+        error = ((const char *(*)())(loadAddress + param->dlerrorPageOffset))();
+
+    if (error) {
+        int log = open("/tmp/smuggler_error.log", O_CREAT|O_RDWR|O_TRUNC, 0666);
+        write(log, error, strlen(error));
+        write(log, "\n", 1);
+        close(log);
+    }
 
     return NULL;
 }

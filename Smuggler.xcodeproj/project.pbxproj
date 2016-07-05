@@ -18,9 +18,9 @@
 		BB0EFD841D1DE6B300FB30CC /* Bootstrap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BB0EFD361D1DD08C00FB30CC /* Bootstrap.bundle */; };
 		BB0EFD891D1DE77C00FB30CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0EFD871D1DE72C00FB30CC /* main.m */; };
 		BBDFABB51D2BB6B7006EDDF0 /* com.jh.Smuggler.Helper in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB0EFD7B1D1DE3DA00FB30CC /* com.jh.Smuggler.Helper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		BBDFABC61D2BB808006EDDF0 /* smuggler in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBDFABBF1D2BB7FA006EDDF0 /* smuggler */; };
+		BBDFABC61D2BB808006EDDF0 /* smuggle in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBDFABBF1D2BB7FA006EDDF0 /* smuggle */; };
 		BBDFAC051D2BB9A3006EDDF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDFAC041D2BB9A3006EDDF0 /* main.m */; };
-		BBDFAC061D2BB9CD006EDDF0 /* smuggler.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDFAC021D2BB97B006EDDF0 /* smuggler.m */; };
+		BBDFAC061D2BB9CD006EDDF0 /* smuggle.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDFAC021D2BB97B006EDDF0 /* smuggle.m */; };
 		BBF078851D2155ED005DB21C /* Smuggler.launch.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBF078841D2155ED005DB21C /* Smuggler.launch.plist */; };
 		BBF078871D215AA0005DB21C /* Smuggler.tif in Resources */ = {isa = PBXBuildFile; fileRef = BBF078861D215AA0005DB21C /* Smuggler.tif */; };
 /* End PBXBuildFile section */
@@ -82,7 +82,7 @@
 			dstPath = "~/bin";
 			dstSubfolderSpec = 0;
 			files = (
-				BBDFABC61D2BB808006EDDF0 /* smuggler in CopyFiles */,
+				BBDFABC61D2BB808006EDDF0 /* smuggle in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,8 +113,8 @@
 		BBB0632C1D1E068400B07BCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BBDD47911D2BC98F0067DCC0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BBDFAB8F1D2AFEA8006EDDF0 /* SwiftTrace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftTrace.xcodeproj; path = SwiftTrace/SwiftTrace.xcodeproj; sourceTree = "<group>"; };
-		BBDFABBF1D2BB7FA006EDDF0 /* smuggler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = smuggler; sourceTree = BUILT_PRODUCTS_DIR; };
-		BBDFAC021D2BB97B006EDDF0 /* smuggler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = smuggler.m; path = Command/smuggler.m; sourceTree = "<group>"; };
+		BBDFABBF1D2BB7FA006EDDF0 /* smuggle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = smuggle; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBDFAC021D2BB97B006EDDF0 /* smuggle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = smuggle.m; path = Command/smuggle.m; sourceTree = "<group>"; };
 		BBDFAC041D2BB9A3006EDDF0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BBF078841D2155ED005DB21C /* Smuggler.launch.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Smuggler.launch.plist; sourceTree = "<group>"; };
 		BBF078861D215AA0005DB21C /* Smuggler.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Smuggler.tif; sourceTree = "<group>"; };
@@ -171,7 +171,7 @@
 				BB0EFD1E1D1DD06200FB30CC /* Smuggler.app */,
 				BB0EFD361D1DD08C00FB30CC /* Bootstrap.bundle */,
 				BB0EFD7B1D1DE3DA00FB30CC /* com.jh.Smuggler.Helper */,
-				BBDFABBF1D2BB7FA006EDDF0 /* smuggler */,
+				BBDFABBF1D2BB7FA006EDDF0 /* smuggle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -238,7 +238,7 @@
 		BBDFAC011D2BB952006EDDF0 /* Command */ = {
 			isa = PBXGroup;
 			children = (
-				BBDFAC021D2BB97B006EDDF0 /* smuggler.m */,
+				BBDFAC021D2BB97B006EDDF0 /* smuggle.m */,
 			);
 			name = Command;
 			sourceTree = "<group>";
@@ -302,9 +302,9 @@
 			productReference = BB0EFD7B1D1DE3DA00FB30CC /* com.jh.Smuggler.Helper */;
 			productType = "com.apple.product-type.tool";
 		};
-		BBDFABBE1D2BB7FA006EDDF0 /* smuggler */ = {
+		BBDFABBE1D2BB7FA006EDDF0 /* smuggle */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BBDFABC31D2BB7FA006EDDF0 /* Build configuration list for PBXNativeTarget "smuggler" */;
+			buildConfigurationList = BBDFABC31D2BB7FA006EDDF0 /* Build configuration list for PBXNativeTarget "smuggle" */;
 			buildPhases = (
 				BBDFABBB1D2BB7FA006EDDF0 /* Sources */,
 				BBDFABBC1D2BB7FA006EDDF0 /* Frameworks */,
@@ -314,9 +314,9 @@
 			);
 			dependencies = (
 			);
-			name = smuggler;
+			name = smuggle;
 			productName = smuggler;
-			productReference = BBDFABBF1D2BB7FA006EDDF0 /* smuggler */;
+			productReference = BBDFABBF1D2BB7FA006EDDF0 /* smuggle */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -364,7 +364,7 @@
 				BB0EFD1D1D1DD06200FB30CC /* Smuggler */,
 				BB0EFD7A1D1DE3DA00FB30CC /* com.jh.Smuggler.Helper */,
 				BB0EFD351D1DD08C00FB30CC /* Bootstrap */,
-				BBDFABBE1D2BB7FA006EDDF0 /* smuggler */,
+				BBDFABBE1D2BB7FA006EDDF0 /* smuggle */,
 			);
 		};
 /* End PBXProject section */
@@ -452,7 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBDFAC061D2BB9CD006EDDF0 /* smuggler.m in Sources */,
+				BBDFAC061D2BB9CD006EDDF0 /* smuggle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,7 +471,7 @@
 		};
 		BBDFABC81D2BB83D006EDDF0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BBDFABBE1D2BB7FA006EDDF0 /* smuggler */;
+			target = BBDFABBE1D2BB7FA006EDDF0 /* smuggle */;
 			targetProxy = BBDFABC71D2BB83D006EDDF0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -596,6 +596,7 @@
 		BB0EFD3A1D1DD08C00FB30CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Bootstrap/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
@@ -609,6 +610,7 @@
 		BB0EFD3B1D1DD08C00FB30CC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Bootstrap/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
@@ -710,7 +712,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BBDFABC31D2BB7FA006EDDF0 /* Build configuration list for PBXNativeTarget "smuggler" */ = {
+		BBDFABC31D2BB7FA006EDDF0 /* Build configuration list for PBXNativeTarget "smuggle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BBDFABC41D2BB7FA006EDDF0 /* Debug */,

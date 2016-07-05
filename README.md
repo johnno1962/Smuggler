@@ -6,10 +6,10 @@ after it has started running. Looking ahead to Xcode 8, this is could be useful 
 if the current approach using plugins and lldb commands is no longer available.
 
 To use this Project, clone the Repo, select "Smuggler" Scheme and run. This starts a menu bar agent for
-the process. While this app is running you can use the command line tool ~/bin/smuggler to force loading
+the process. While this app is running you can use the command line tool ~/bin/smuggle to force loading
 of a built bundle or framework into the app after the fact. Error reporting on loading errors is not 
-great unfortunately due how the code has to work. If you're sure the bundle has been compiled for
-the right architecture and Swift version it should work.
+great unfortunately due how the code has to work. There is a log file created in /tmp/smuggler.log
+and in the event of a dll load error it will be saved to /tmp/smuggler_error.log.
 
 Included in the app is an example bundle [SwiftTrace](https://github.com/johnno1962/SwiftTrace)
 (actually it's an iOS framework - they are both dynamic libraries at the end of the day.) If you are
