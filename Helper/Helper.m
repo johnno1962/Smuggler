@@ -1,0 +1,119 @@
+//
+//  Helper.m
+//  Smuggler
+//
+//  Created by John Holdsworth on 24/06/2016.
+//  Copyright © 2016 John Holdsworth. All rights reserved.
+//
+
+#import "Helper.h"
+#import "mach_inject.h"
+#import "mach_inject_bundle_stub.h"
+
+#include <libproc.h>
+
+static FILE *logger;
+
+@implementation Helper
+
+- (NSString *)projectRoot:(const char *)sourceFile {
+    return [NSString stringWithCString:sourceFile encoding:NSUTF8StringEncoding]
+            .stringByDeletingLastPathComponent.stringByDeletingLastPathComponent;
+}
+
+- (mach_error_t)inject:(NSString *)appPath bundle:(NSString *)payload client:(const char *)client {
+    assert([[self projectRoot:client] isEqualToString:[self projectRoot:__FILE__]]);
+
+    logger = fopen( "/tmp/smuggler.log", "w" );
+    setvbuf( logger, nil, _IONBF, 0 );
+
+    NSBundle *appBundle = [NSBundle bundleWithPath:appPath];
+    assert(appBundle && "App Bundle");
+
+    NSURL *boostrapURL = [appBundle URLForResource:@"Bootstrap" withExtension:@"bundle"];
+    CFBundleRef bootstrapBundle = CFBundleCreate(kCFAllocatorDefault, (__bridge CFURLRef)boostrapURL);
+    void *bootstrapEntry = CFBundleGetFunctionPointerForName(bootstrapBundle, CFSTR( INJECT_ENTRY_SYMBOL ));
+    assert(bootstrapEntry && "Bootstrap Entry");
+
+    fprintf( logger, "bootstrapEntry: %p\n", bootstrapEntry );
+
+    NSBundle *payloadBundle = [NSBundle bundleWithPath:payload];
+    fprintf( logger, "payloadBundle: %p\n", payloadBundle );
+    if (!payloadBundle)
+        return 0;
+
+    const char *payloadPath = payloadBundle.executablePath.fileSystemRepresentation;
+    assert(payloadPath && "Payload Path");
+
+    fprintf( logger, "payloadPath: %s\n", payloadPath );
+
+    size_t payloadPathSize = strlen( payloadPath ) + 1;
+    size_t paramSize = sizeof( unsigned ) + payloadPathSize;
+    mach_inject_bundle_stub_param *param = malloc( paramSize );
+    bcopy(payloadPath,
+          param->bundleExecutableFileSystemRepresentation,
+          payloadPathSize);
+
+    char pathBuff[PROC_PIDPATHINFO_MAXSIZE];
+    memset(pathBuff, 0, sizeof pathBuff);
+
+    pid_t pid = [self pidContaining:"libexec/MobileGestaltHelper" returning:pathBuff];
+    fprintf( logger, "pathBuff: %d %s\n", pid, pathBuff );
+    if( pid <= 0 )
+        return 0;
+
+    NSString *simPath = [NSString stringWithUTF8String:pathBuff];
+    NSString *dyldPath = [simPath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent
+                          stringByAppendingPathComponent:@"lib/system/libdyld.dylib"];
+
+    fprintf( logger, "dyldPath: %s\n", [dyldPath UTF8String] );
+
+    NSString *output = [self run:[NSString stringWithFormat:@"nm \"%@\" | grep _dlopen", dyldPath]];
+    [[NSScanner scannerWithString:output] scanHexInt:&param->dlopenPageOffset];
+
+    fprintf( logger, "dlopen offset: 0x%x\n", param->dlopenPageOffset );
+
+    pid = [self pidContaining:"/data/Containers/Bundle/Application/" returning:NULL];
+    if( pid <= 0 )
+        return 0;
+
+    mach_error_t err = mach_inject( bootstrapEntry, param, paramSize, pid, 0 );
+    CFRelease( bootstrapBundle );
+    free( param );
+    return err;
+}
+
+- (pid_t)pidContaining:(const char *)text returning:(char *)returning {
+    int procCnt = proc_listpids(PROC_ALL_PIDS, 0, NULL, 0);
+    pid_t pids[65536];
+    memset(pids, 0, sizeof pids);
+    proc_listpids(PROC_ALL_PIDS, 0, pids, sizeof(pids));
+
+    char curPath[PROC_PIDPATHINFO_MAXSIZE];
+    memset(curPath, 0, sizeof curPath);
+    for (int i = 0; i < procCnt; i++) {
+        proc_pidpath(pids[i], curPath, sizeof curPath);
+        if ( strstr(curPath, text) != NULL ) {
+            if (returning)
+                strcpy( returning, curPath );
+            return pids[i];
+        }
+    }
+
+    return 0;
+}
+
+- (NSString *)run:(NSString *)command {
+    NSTask *task = [NSTask new];
+    NSPipe *pipe = [NSPipe new];
+    task.launchPath = @"/bin/bash";
+    task.arguments = @[@"-c", command];
+    task.standardOutput = pipe.fileHandleForWriting;
+    [task launch];
+    [pipe.fileHandleForWriting closeFile];
+    [task waitUntilExit];
+    NSData *output = pipe.fileHandleForReading.readDataToEndOfFile;
+    return [[NSString alloc] initWithData:output encoding:NSUTF8StringEncoding];
+}
+
+@end

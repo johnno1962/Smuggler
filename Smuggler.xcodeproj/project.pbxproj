@@ -1,0 +1,725 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BB0EFD231D1DD06200FB30CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0EFD221D1DD06200FB30CC /* AppDelegate.m */; };
+		BB0EFD281D1DD06200FB30CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB0EFD271D1DD06200FB30CC /* Assets.xcassets */; };
+		BB0EFD2B1D1DD06200FB30CC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB0EFD291D1DD06200FB30CC /* MainMenu.xib */; };
+		BB0EFD571D1DD1AD00FB30CC /* mach_inject_bundle_stub.c in Sources */ = {isa = PBXBuildFile; fileRef = BB0EFD551D1DD1AD00FB30CC /* mach_inject_bundle_stub.c */; };
+		BB0EFD6D1D1DD93A00FB30CC /* HelperInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0EFD6C1D1DD93A00FB30CC /* HelperInstaller.m */; };
+		BB0EFD701D1DD95000FB30CC /* HelperProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0EFD6F1D1DD95000FB30CC /* HelperProxy.m */; };
+		BB0EFD821D1DE5DA00FB30CC /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0EFD641D1DD38500FB30CC /* Helper.m */; };
+		BB0EFD831D1DE5DA00FB30CC /* mach_inject.c in Sources */ = {isa = PBXBuildFile; fileRef = BB0EFD601D1DD24800FB30CC /* mach_inject.c */; };
+		BB0EFD841D1DE6B300FB30CC /* Bootstrap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BB0EFD361D1DD08C00FB30CC /* Bootstrap.bundle */; };
+		BB0EFD891D1DE77C00FB30CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0EFD871D1DE72C00FB30CC /* main.m */; };
+		BBDFABB51D2BB6B7006EDDF0 /* com.jh.Smuggler.Helper in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB0EFD7B1D1DE3DA00FB30CC /* com.jh.Smuggler.Helper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		BBDFABC61D2BB808006EDDF0 /* smuggler in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBDFABBF1D2BB7FA006EDDF0 /* smuggler */; };
+		BBDFAC051D2BB9A3006EDDF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDFAC041D2BB9A3006EDDF0 /* main.m */; };
+		BBDFAC061D2BB9CD006EDDF0 /* smuggler.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDFAC021D2BB97B006EDDF0 /* smuggler.m */; };
+		BBF078851D2155ED005DB21C /* Smuggler.launch.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBF078841D2155ED005DB21C /* Smuggler.launch.plist */; };
+		BBF078871D215AA0005DB21C /* Smuggler.tif in Resources */ = {isa = PBXBuildFile; fileRef = BBF078861D215AA0005DB21C /* Smuggler.tif */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BBB063221D1E036600B07BCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB0EFD161D1DD06200FB30CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB0EFD351D1DD08C00FB30CC;
+			remoteInfo = Bootstrap;
+		};
+		BBB063261D1E036E00B07BCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB0EFD161D1DD06200FB30CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB0EFD7A1D1DE3DA00FB30CC;
+			remoteInfo = com.jh.Smuggler.Helper;
+		};
+		BBDFAB931D2AFEAA006EDDF0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BBDFAB8F1D2AFEA8006EDDF0 /* SwiftTrace.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BBDFAB841D2AFEA8006EDDF0;
+			remoteInfo = SwiftTrace;
+		};
+		BBDFABC71D2BB83D006EDDF0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB0EFD161D1DD06200FB30CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BBDFABBE1D2BB7FA006EDDF0;
+			remoteInfo = smuggler;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BB0EFD751D1DE06700FB30CC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LaunchServices;
+			dstSubfolderSpec = 1;
+			files = (
+				BBDFABB51D2BB6B7006EDDF0 /* com.jh.Smuggler.Helper in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB0EFD791D1DE3DA00FB30CC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		BBDFABBD1D2BB7FA006EDDF0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "~/bin";
+			dstSubfolderSpec = 0;
+			files = (
+				BBDFABC61D2BB808006EDDF0 /* smuggler in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		BB0EFD1E1D1DD06200FB30CC /* Smuggler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smuggler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB0EFD211D1DD06200FB30CC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BB0EFD221D1DD06200FB30CC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BB0EFD271D1DD06200FB30CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BB0EFD2C1D1DD06200FB30CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB0EFD361D1DD08C00FB30CC /* Bootstrap.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Bootstrap.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB0EFD381D1DD08C00FB30CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB0EFD4C1D1DD0D900FB30CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB0EFD551D1DD1AD00FB30CC /* mach_inject_bundle_stub.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mach_inject_bundle_stub.c; sourceTree = "<group>"; };
+		BB0EFD561D1DD1AD00FB30CC /* mach_inject_bundle_stub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mach_inject_bundle_stub.h; sourceTree = "<group>"; };
+		BB0EFD601D1DD24800FB30CC /* mach_inject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mach_inject.c; sourceTree = "<group>"; };
+		BB0EFD611D1DD24800FB30CC /* mach_inject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mach_inject.h; sourceTree = "<group>"; };
+		BB0EFD631D1DD38500FB30CC /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
+		BB0EFD641D1DD38500FB30CC /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
+		BB0EFD6B1D1DD93A00FB30CC /* HelperInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperInstaller.h; sourceTree = "<group>"; };
+		BB0EFD6C1D1DD93A00FB30CC /* HelperInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperInstaller.m; sourceTree = "<group>"; };
+		BB0EFD6E1D1DD95000FB30CC /* HelperProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperProxy.h; sourceTree = "<group>"; };
+		BB0EFD6F1D1DD95000FB30CC /* HelperProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperProxy.m; sourceTree = "<group>"; };
+		BB0EFD7B1D1DE3DA00FB30CC /* com.jh.Smuggler.Helper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = com.jh.Smuggler.Helper; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB0EFD871D1DE72C00FB30CC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BB0EFD8A1D1DEBCA00FB30CC /* Info-Launchd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Launchd.plist"; sourceTree = "<group>"; };
+		BBB0632C1D1E068400B07BCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		BBDD47911D2BC98F0067DCC0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BBDFAB8F1D2AFEA8006EDDF0 /* SwiftTrace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftTrace.xcodeproj; path = SwiftTrace/SwiftTrace.xcodeproj; sourceTree = "<group>"; };
+		BBDFABBF1D2BB7FA006EDDF0 /* smuggler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = smuggler; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBDFAC021D2BB97B006EDDF0 /* smuggler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = smuggler.m; path = Command/smuggler.m; sourceTree = "<group>"; };
+		BBDFAC041D2BB9A3006EDDF0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BBF078841D2155ED005DB21C /* Smuggler.launch.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Smuggler.launch.plist; sourceTree = "<group>"; };
+		BBF078861D215AA0005DB21C /* Smuggler.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Smuggler.tif; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BB0EFD1B1D1DD06200FB30CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB0EFD331D1DD08C00FB30CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB0EFD781D1DE3DA00FB30CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBDFABBC1D2BB7FA006EDDF0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BB0EFD151D1DD06200FB30CC = {
+			isa = PBXGroup;
+			children = (
+				BBDD47911D2BC98F0067DCC0 /* README.md */,
+				BB0EFD201D1DD06200FB30CC /* Smuggler */,
+				BB0EFD4B1D1DD0D900FB30CC /* Helper */,
+				BB0EFD371D1DD08C00FB30CC /* Bootstrap */,
+				BBDFAB8F1D2AFEA8006EDDF0 /* SwiftTrace.xcodeproj */,
+				BBDFAC011D2BB952006EDDF0 /* Command */,
+				BB0EFD1F1D1DD06200FB30CC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BB0EFD1F1D1DD06200FB30CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BB0EFD1E1D1DD06200FB30CC /* Smuggler.app */,
+				BB0EFD361D1DD08C00FB30CC /* Bootstrap.bundle */,
+				BB0EFD7B1D1DE3DA00FB30CC /* com.jh.Smuggler.Helper */,
+				BBDFABBF1D2BB7FA006EDDF0 /* smuggler */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB0EFD201D1DD06200FB30CC /* Smuggler */ = {
+			isa = PBXGroup;
+			children = (
+				BB0EFD211D1DD06200FB30CC /* AppDelegate.h */,
+				BB0EFD221D1DD06200FB30CC /* AppDelegate.m */,
+				BB0EFD6B1D1DD93A00FB30CC /* HelperInstaller.h */,
+				BB0EFD6C1D1DD93A00FB30CC /* HelperInstaller.m */,
+				BB0EFD6E1D1DD95000FB30CC /* HelperProxy.h */,
+				BB0EFD6F1D1DD95000FB30CC /* HelperProxy.m */,
+				BB0EFD271D1DD06200FB30CC /* Assets.xcassets */,
+				BB0EFD291D1DD06200FB30CC /* MainMenu.xib */,
+				BB0EFD241D1DD06200FB30CC /* Supporting Files */,
+			);
+			path = Smuggler;
+			sourceTree = "<group>";
+		};
+		BB0EFD241D1DD06200FB30CC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BBF078841D2155ED005DB21C /* Smuggler.launch.plist */,
+				BBF078861D215AA0005DB21C /* Smuggler.tif */,
+				BB0EFD2C1D1DD06200FB30CC /* Info.plist */,
+				BBDFAC041D2BB9A3006EDDF0 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BB0EFD371D1DD08C00FB30CC /* Bootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				BB0EFD561D1DD1AD00FB30CC /* mach_inject_bundle_stub.h */,
+				BB0EFD551D1DD1AD00FB30CC /* mach_inject_bundle_stub.c */,
+				BB0EFD381D1DD08C00FB30CC /* Info.plist */,
+			);
+			path = Bootstrap;
+			sourceTree = "<group>";
+		};
+		BB0EFD4B1D1DD0D900FB30CC /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				BB0EFD871D1DE72C00FB30CC /* main.m */,
+				BB0EFD631D1DD38500FB30CC /* Helper.h */,
+				BB0EFD641D1DD38500FB30CC /* Helper.m */,
+				BB0EFD611D1DD24800FB30CC /* mach_inject.h */,
+				BB0EFD601D1DD24800FB30CC /* mach_inject.c */,
+				BB0EFD4C1D1DD0D900FB30CC /* Info.plist */,
+				BB0EFD8A1D1DEBCA00FB30CC /* Info-Launchd.plist */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		BBDFAB901D2AFEA8006EDDF0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BBDFAB941D2AFEAA006EDDF0 /* SwiftTrace.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BBDFAC011D2BB952006EDDF0 /* Command */ = {
+			isa = PBXGroup;
+			children = (
+				BBDFAC021D2BB97B006EDDF0 /* smuggler.m */,
+			);
+			name = Command;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BB0EFD1D1D1DD06200FB30CC /* Smuggler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB0EFD2F1D1DD06200FB30CC /* Build configuration list for PBXNativeTarget "Smuggler" */;
+			buildPhases = (
+				BB0EFD1A1D1DD06200FB30CC /* Sources */,
+				BB0EFD1B1D1DD06200FB30CC /* Frameworks */,
+				BB0EFD1C1D1DD06200FB30CC /* Resources */,
+				BB0EFD751D1DE06700FB30CC /* CopyFiles */,
+				BBD7C9441D2AFCFD006E1D9F /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BBB063271D1E036E00B07BCB /* PBXTargetDependency */,
+				BBB063231D1E036600B07BCB /* PBXTargetDependency */,
+				BBDFABC81D2BB83D006EDDF0 /* PBXTargetDependency */,
+			);
+			name = Smuggler;
+			productName = Smuggler;
+			productReference = BB0EFD1E1D1DD06200FB30CC /* Smuggler.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BB0EFD351D1DD08C00FB30CC /* Bootstrap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB0EFD391D1DD08C00FB30CC /* Build configuration list for PBXNativeTarget "Bootstrap" */;
+			buildPhases = (
+				BB0EFD321D1DD08C00FB30CC /* Sources */,
+				BB0EFD331D1DD08C00FB30CC /* Frameworks */,
+				BB0EFD341D1DD08C00FB30CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Bootstrap;
+			productName = Bootstrap;
+			productReference = BB0EFD361D1DD08C00FB30CC /* Bootstrap.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		BB0EFD7A1D1DE3DA00FB30CC /* com.jh.Smuggler.Helper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB0EFD7F1D1DE3DA00FB30CC /* Build configuration list for PBXNativeTarget "com.jh.Smuggler.Helper" */;
+			buildPhases = (
+				BB0EFD771D1DE3DA00FB30CC /* Sources */,
+				BB0EFD781D1DE3DA00FB30CC /* Frameworks */,
+				BB0EFD791D1DE3DA00FB30CC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = com.jh.Smuggler.Helper;
+			productName = com.jh.Smuggler.Helper;
+			productReference = BB0EFD7B1D1DE3DA00FB30CC /* com.jh.Smuggler.Helper */;
+			productType = "com.apple.product-type.tool";
+		};
+		BBDFABBE1D2BB7FA006EDDF0 /* smuggler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBDFABC31D2BB7FA006EDDF0 /* Build configuration list for PBXNativeTarget "smuggler" */;
+			buildPhases = (
+				BBDFABBB1D2BB7FA006EDDF0 /* Sources */,
+				BBDFABBC1D2BB7FA006EDDF0 /* Frameworks */,
+				BBDFABBD1D2BB7FA006EDDF0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = smuggler;
+			productName = smuggler;
+			productReference = BBDFABBF1D2BB7FA006EDDF0 /* smuggler */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BB0EFD161D1DD06200FB30CC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "John Holdsworth";
+				TargetAttributes = {
+					BB0EFD1D1D1DD06200FB30CC = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					BB0EFD351D1DD08C00FB30CC = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					BB0EFD7A1D1DE3DA00FB30CC = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					BBDFABBE1D2BB7FA006EDDF0 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = BB0EFD191D1DD06200FB30CC /* Build configuration list for PBXProject "Smuggler" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BB0EFD151D1DD06200FB30CC;
+			productRefGroup = BB0EFD1F1D1DD06200FB30CC /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = BBDFAB901D2AFEA8006EDDF0 /* Products */;
+					ProjectRef = BBDFAB8F1D2AFEA8006EDDF0 /* SwiftTrace.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				BB0EFD1D1D1DD06200FB30CC /* Smuggler */,
+				BB0EFD7A1D1DE3DA00FB30CC /* com.jh.Smuggler.Helper */,
+				BB0EFD351D1DD08C00FB30CC /* Bootstrap */,
+				BBDFABBE1D2BB7FA006EDDF0 /* smuggler */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		BBDFAB941D2AFEAA006EDDF0 /* SwiftTrace.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftTrace.framework;
+			remoteRef = BBDFAB931D2AFEAA006EDDF0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BB0EFD1C1D1DD06200FB30CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBF078871D215AA0005DB21C /* Smuggler.tif in Resources */,
+				BB0EFD841D1DE6B300FB30CC /* Bootstrap.bundle in Resources */,
+				BB0EFD281D1DD06200FB30CC /* Assets.xcassets in Resources */,
+				BBF078851D2155ED005DB21C /* Smuggler.launch.plist in Resources */,
+				BB0EFD2B1D1DD06200FB30CC /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB0EFD341D1DD08C00FB30CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BBD7C9441D2AFCFD006E1D9F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "unset TOOLCHAINS\nexport APP_PACKAGE=\"$CODESIGNING_FOLDER_PATH\"\ncd SwiftTrace && \"$DEVELOPER_BIN_DIR\"/xcodebuild -sdk iphonesimulator -config Debug -arch x86_64";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BB0EFD1A1D1DD06200FB30CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBDFAC051D2BB9A3006EDDF0 /* main.m in Sources */,
+				BB0EFD231D1DD06200FB30CC /* AppDelegate.m in Sources */,
+				BB0EFD6D1D1DD93A00FB30CC /* HelperInstaller.m in Sources */,
+				BB0EFD701D1DD95000FB30CC /* HelperProxy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB0EFD321D1DD08C00FB30CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB0EFD571D1DD1AD00FB30CC /* mach_inject_bundle_stub.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB0EFD771D1DE3DA00FB30CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB0EFD891D1DE77C00FB30CC /* main.m in Sources */,
+				BB0EFD821D1DE5DA00FB30CC /* Helper.m in Sources */,
+				BB0EFD831D1DE5DA00FB30CC /* mach_inject.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBDFABBB1D2BB7FA006EDDF0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBDFAC061D2BB9CD006EDDF0 /* smuggler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BBB063231D1E036600B07BCB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB0EFD351D1DD08C00FB30CC /* Bootstrap */;
+			targetProxy = BBB063221D1E036600B07BCB /* PBXContainerItemProxy */;
+		};
+		BBB063271D1E036E00B07BCB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB0EFD7A1D1DE3DA00FB30CC /* com.jh.Smuggler.Helper */;
+			targetProxy = BBB063261D1E036E00B07BCB /* PBXContainerItemProxy */;
+		};
+		BBDFABC81D2BB83D006EDDF0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BBDFABBE1D2BB7FA006EDDF0 /* smuggler */;
+			targetProxy = BBDFABC71D2BB83D006EDDF0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BB0EFD291D1DD06200FB30CC /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BBB0632C1D1E068400B07BCB /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BB0EFD2D1D1DD06200FB30CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BB0EFD2E1D1DD06200FB30CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BB0EFD301D1DD06200FB30CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Smuggler/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jh.Smuggler;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BB0EFD311D1DD06200FB30CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Smuggler/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jh.Smuggler;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		BB0EFD3A1D1DD08C00FB30CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Bootstrap/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jh.Smuggler.Bootstrap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		BB0EFD3B1D1DD08C00FB30CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Bootstrap/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jh.Smuggler.Bootstrap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		BB0EFD801D1DE3DA00FB30CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Helper/Info.plist;
+				INFOPLIST_PREPROCESS = YES;
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					Helper/Info.plist,
+					"-sectcreate",
+					__TEXT,
+					__launchd_plist,
+					"Helper/Info-Launchd.plist",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BB0EFD811D1DE3DA00FB30CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Helper/Info.plist;
+				INFOPLIST_PREPROCESS = YES;
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					Helper/Info.plist,
+					"-sectcreate",
+					__TEXT,
+					__launchd_plist,
+					"Helper/Info-Launchd.plist",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		BBDFABC41D2BB7FA006EDDF0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BBDFABC51D2BB7FA006EDDF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BB0EFD191D1DD06200FB30CC /* Build configuration list for PBXProject "Smuggler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB0EFD2D1D1DD06200FB30CC /* Debug */,
+				BB0EFD2E1D1DD06200FB30CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB0EFD2F1D1DD06200FB30CC /* Build configuration list for PBXNativeTarget "Smuggler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB0EFD301D1DD06200FB30CC /* Debug */,
+				BB0EFD311D1DD06200FB30CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB0EFD391D1DD08C00FB30CC /* Build configuration list for PBXNativeTarget "Bootstrap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB0EFD3A1D1DD08C00FB30CC /* Debug */,
+				BB0EFD3B1D1DD08C00FB30CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB0EFD7F1D1DE3DA00FB30CC /* Build configuration list for PBXNativeTarget "com.jh.Smuggler.Helper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB0EFD801D1DE3DA00FB30CC /* Debug */,
+				BB0EFD811D1DE3DA00FB30CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BBDFABC31D2BB7FA006EDDF0 /* Build configuration list for PBXNativeTarget "smuggler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBDFABC41D2BB7FA006EDDF0 /* Debug */,
+				BBDFABC51D2BB7FA006EDDF0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BB0EFD161D1DD06200FB30CC /* Project object */;
+}
