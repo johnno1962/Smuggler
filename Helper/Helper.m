@@ -25,7 +25,7 @@ static FILE *logger;
     assert([[self projectRoot:client] isEqualToString:[self projectRoot:__FILE__]]);
 
     logger = fopen( "/tmp/smuggler.log", "w" );
-    setvbuf( logger, nil, _IONBF, 0 );
+    setvbuf( logger, NULL, _IONBF, 0 );
 
     NSBundle *appBundle = [NSBundle bundleWithPath:appPath];
     assert(appBundle && "App Bundle");
@@ -39,8 +39,10 @@ static FILE *logger;
 
     NSBundle *payloadBundle = [NSBundle bundleWithPath:payload];
     fprintf( logger, "payloadBundle: %p\n", payloadBundle );
-    if (!payloadBundle)
+    if (!payloadBundle) {
+        fprintf( logger, "Could not loda payload bundle: %s\n", [payload UTF8String] );
         return 0;
+    }
 
     const char *payloadPath = payloadBundle.executablePath.fileSystemRepresentation;
     assert(payloadPath && "Payload Path");
@@ -56,8 +58,10 @@ static FILE *logger;
 
     pid_t pid = [self pidContaining:"libexec/MobileGestaltHelper" returning:pathBuff];
     fprintf( logger, "pathBuff: %d %s\n", pid, pathBuff );
-    if( pid <= 0 )
+    if( pid <= 0 ) {
+        fprintf( logger, "Simulator does not seem to be running\n" );
         return 0;
+    }
 
     NSString *simPath = [NSString stringWithUTF8String:pathBuff];
     NSString *dyldPath = [simPath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent
@@ -74,8 +78,12 @@ static FILE *logger;
     fprintf( logger, "dlopen() offset: 0x%x, dlerror() offset: 0x%x\n", param->dlopenPageOffset, param->dlerrorPageOffset );
 
     pid = [self pidContaining:"/data/Containers/Bundle/Application/" returning:NULL];
-    if( pid <= 0 )
+    if( pid <= 0 ) {
+        fprintf( logger, "Could not locate app running in simulator\n" );
         return 0;
+    }
+
+    fclose( logger );
 
     mach_error_t err = mach_inject( bootstrapEntry, param, paramSize, pid, 0 );
     CFRelease( bootstrapBundle );

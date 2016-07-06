@@ -11,6 +11,8 @@ of a built bundle or framework into the app after the fact. Error reporting on l
 great unfortunately due how the code has to work. There is a log file created in /tmp/smuggler.log
 and in the event of a dll load error it will be saved to /tmp/smuggler_error.log.
 
+![Icon](http://injectionforxcode.johnholdsworth.com/trace.png)
+
 Included in the app is an example bundle [SwiftTrace](https://github.com/johnno1962/SwiftTrace)
 (actually it's an iOS framework - they are both dynamic libraries at the end of the day.) If you are
 running a Swift application in the simulator and also running the Smuggler app, if use the 
