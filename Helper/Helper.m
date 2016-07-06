@@ -85,7 +85,9 @@ static FILE *logger;
 
     fclose( logger );
 
+    // vm_write() Bootstrap.bundle into target process and execute to load payload
     mach_error_t err = mach_inject( bootstrapEntry, param, paramSize, pid, 0 );
+
     CFRelease( bootstrapBundle );
     free( param );
     return err;

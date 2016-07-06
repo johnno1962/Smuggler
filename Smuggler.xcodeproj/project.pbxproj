@@ -413,7 +413,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "unset TOOLCHAINS\nexport APP_PACKAGE=\"$CODESIGNING_FOLDER_PATH\"\ncd SwiftTrace && \"$DEVELOPER_BIN_DIR\"/xcodebuild -sdk iphonesimulator -config Debug -arch x86_64";
+			shellScript = "unset TOOLCHAINS\nexport RESOURCE_DEST=\"$CODESIGNING_FOLDER_PATH/Contents/Resources/SwiftTrace.bundle\"\ncd SwiftTrace && \"$DEVELOPER_BIN_DIR\"/xcodebuild SYMROOT=/tmp/SwitTrace -sdk iphonesimulator -config Debug -arch x86_64";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

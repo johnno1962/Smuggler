@@ -9,7 +9,7 @@ To use this Project, clone the Repo, select "Smuggler" Scheme and run. This star
 the process. While this app is running you can use the command line tool ~/bin/smuggle to force loading
 of a built bundle or framework into the app after the fact. Error reporting on loading errors is not 
 great unfortunately due how the code has to work. There is a log file created in /tmp/smuggler.log
-and in the event of a dll load error it will be saved to /tmp/smuggler_error.log.
+and in the event of a dlopen() load error it will be saved to /tmp/smuggler_error.log.
 
 ![Icon](http://injectionforxcode.johnholdsworth.com/trace.png)
 

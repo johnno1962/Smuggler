@@ -151,7 +151,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -rf \"$CODESIGNING_FOLDER_PATH\" \"$APP_PACKAGE/Contents/Resources\"";
+			shellScript = "cp -rf \"$CODESIGNING_FOLDER_PATH\" \"$RESOURCE_DEST\"";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

@@ -16,6 +16,7 @@
 #include <dlfcn.h>
 
 #include <sys/mman.h>
+#include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
 
@@ -98,7 +99,7 @@ pthread_entry(
     // As a start, the first page actually loaded into memory is located.
     // Shortly after this page will be "libdyld" which is itself a dylib.
     // Which page is found using a offset determined in the Helper using "nm"
-    // in confunction with the first 16 bytes of the function machine code
+    // in confunction with the first 16 bytes of the dlopen() machine code
     // which seems to be shared across tested iOS versions (8.4 -> 10.0.)
     //
     // Move along, nothing to see here...
@@ -121,18 +122,22 @@ pthread_entry(
             break;
         }
 
-    const char *error = NULL;
+    const char *error = NULL, *logfile = "/tmp/smuggler_error.log";
+    struct stat info;
+
     if (!dlopen_)
-        error = "Could not locate dlopen()\n";
+        error = "Could not locate dlopen()";
     else if ( dlopen_(param->bundleExecutableFileSystemRepresentation, RTLD_NOW) == NULL )
         error = ((const char *(*)())(loadAddress + param->dlerrorPageOffset))();
 
     if (error) {
-        int log = open("/tmp/smuggler_error.log", O_CREAT|O_RDWR|O_TRUNC, 0666);
+        int log = open(logfile, O_CREAT|O_RDWR|O_TRUNC, 0666);
         write(log, error, strlen(error));
         write(log, "\n", 1);
         close(log);
     }
+    else if (stat(logfile, &info) == 0)
+        unlink(logfile);
 
     return NULL;
 }

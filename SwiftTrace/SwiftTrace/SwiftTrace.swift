@@ -6,7 +6,7 @@
 //  Copyright © 2016 John Holdsworth. All rights reserved.
 //
 //  Repo: https://github.com/johnno1962/SwiftTrace
-//  $Id: //depot/Smuggler/SwiftTrace/SwiftTrace/SwiftTrace.swift#2 $
+//  $Id: //depot/Smuggler/SwiftTrace/SwiftTrace/SwiftTrace.swift#3 $
 //
 
 import Foundation
@@ -58,7 +58,13 @@ private struct ClassMetadataSwift {
     /// after an early return from a constructor.
     var IVarDestroyer: SIMP? = nil
 
-    /// vtable of function pointers to methods (and ivar offsets) follows...
+    // After this come the class members, laid out as follows:
+    //   - class members for the superclass (recursively)
+    //   - metadata reference for the parent, if applicable
+    //   - generic parameters for this class
+    //   - class variables (if we choose to support these)
+    //   - "tabulated" virtual methods
+
 }
 
 /**

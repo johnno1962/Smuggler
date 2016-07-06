@@ -78,7 +78,7 @@
 }
 
 - (IBAction)traceSwift:sender {
-    [self loadBundle:[[NSBundle mainBundle] pathForResource:@"SwiftTrace" ofType:@"framework"]];
+    [self loadBundle:[[NSBundle mainBundle] pathForResource:@"SwiftTrace" ofType:@"bundle"]];
 }
 
 - (IBAction)quit:sender {
