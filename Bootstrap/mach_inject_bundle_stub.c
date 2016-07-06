@@ -92,19 +92,21 @@ void*
 pthread_entry(
               mach_inject_bundle_stub_param	*param ) {
 
-    // The following descent into darkness is brought to you by:
+    // The following descent into dark magic is brought to you by:
     // https://en.wikipedia.org/wiki/Address_space_layout_randomization
     //
     // As a start, the first page actually loaded into memory is located.
-    // Shortly after this page will be libdyld which itself is a dylib.
+    // Shortly after this page will be "libdyld" which is itself a dylib.
     // Which page is found using a offset determined in the Helper using "nm"
     // in confunction with the first 16 bytes of the function machine code
     // which seems to be shared across tested iOS versions (8.4 -> 10.0.)
     //
     // Move along, nothing to see here...
 
-    char vec, *loadAddress = (char *)0x100000000;
-    while ( !(mincore( loadAddress, PAGE_SIZE, &vec ) == 0 && vec & MINCORE_INCORE) )
+    #define VALID_ADDRESS( _addr ) (mincore( _addr, PAGE_SIZE, vec ) == 0 && vec[0] & MINCORE_INCORE)
+
+    char *loadAddress = (char *)0x100000000, vec[1];
+    while ( !VALID_ADDRESS( loadAddress ) )
         loadAddress += PAGE_SIZE;
 
     static unsigned char dlopenInstrux[] = {
@@ -113,8 +115,7 @@ pthread_entry(
     typedef void * (*dlopen_f)(const char * __path, int __mode);
     dlopen_f dlopen_ = NULL;
 
-    for ( ; loadAddress < (char *)0x200000000 &&
-         mincore( loadAddress, PAGE_SIZE, &vec ) == 0 && vec & MINCORE_INCORE ; loadAddress += PAGE_SIZE )
+    for ( ; loadAddress < (char *)0x200000000 && VALID_ADDRESS( loadAddress ) ; loadAddress += PAGE_SIZE )
         if (memcmp(loadAddress + param->dlopenPageOffset, dlopenInstrux, sizeof dlopenInstrux) == 0) {
             dlopen_ = (dlopen_f)(loadAddress + param->dlopenPageOffset);
             break;
