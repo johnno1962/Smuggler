@@ -122,8 +122,7 @@ pthread_entry(
             break;
         }
 
-    const char *error = NULL, *logfile = "/tmp/smuggler_error.log";
-    struct stat info;
+    const char *error = NULL;
 
     if (!dlopen_)
         error = "Could not locate dlopen()";
@@ -131,13 +130,11 @@ pthread_entry(
         error = ((const char *(*)())(loadAddress + param->dlerrorPageOffset))();
 
     if (error) {
-        int log = open(logfile, O_CREAT|O_RDWR|O_TRUNC, 0666);
+        int log = open(SM_LOGFILE, O_CREAT|O_WRONLY|O_APPEND, 0666);
         write(log, error, strlen(error));
         write(log, "\n", 1);
         close(log);
     }
-    else if (stat(logfile, &info) == 0)
-        unlink(logfile);
 
     return NULL;
 }

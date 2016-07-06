@@ -24,8 +24,9 @@ static FILE *logger;
 - (mach_error_t)inject:(NSString *)appPath bundle:(NSString *)payload client:(const char *)client {
     assert([[self projectRoot:client] isEqualToString:[self projectRoot:__FILE__]]);
 
-    logger = fopen( "/tmp/smuggler.log", "w" );
-    setvbuf( logger, NULL, _IONBF, 0 );
+    logger = fopen(SM_LOGFILE, "w");
+    setvbuf(logger, NULL, _IONBF, 0);
+    fchmod(fileno(logger), 0666);
 
     NSBundle *appBundle = [NSBundle bundleWithPath:appPath];
     assert(appBundle && "App Bundle");
@@ -56,7 +57,7 @@ static FILE *logger;
     char pathBuff[PROC_PIDPATHINFO_MAXSIZE];
     memset(pathBuff, 0, sizeof pathBuff);
 
-    pid_t pid = [self pidContaining:"libexec/MobileGestaltHelper" returning:pathBuff];
+    pid_t pid = [self pidContaining:"/usr/libexec/MobileGestaltHelper" returning:pathBuff];
     fprintf( logger, "pathBuff: %d %s\n", pid, pathBuff );
     if( pid <= 0 ) {
         fprintf( logger, "Simulator does not seem to be running\n" );
@@ -64,15 +65,16 @@ static FILE *logger;
     }
 
     NSString *simPath = [NSString stringWithUTF8String:pathBuff];
-    NSString *dyldPath = [simPath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent
-                          stringByAppendingPathComponent:@"lib/system/libdyld.dylib"];
+    NSString *dyldPath = [[simPath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent
+                           stringByAppendingPathComponent:@"lib/system/libdyld.dylib"]
+                          stringByReplacingOccurrencesOfString:@"'" withString:@""];
 
     fprintf( logger, "dyldPath: %s\n", [dyldPath UTF8String] );
 
-    NSString *output = [self run:[NSString stringWithFormat:@"nm \"%@\" | grep ' _dlopen'", dyldPath]];
+    NSString *output = [self run:[NSString stringWithFormat:@"nm '%@' | grep ' _dlopen'", dyldPath]];
     [[NSScanner scannerWithString:output] scanHexInt:&param->dlopenPageOffset];
 
-    output = [self run:[NSString stringWithFormat:@"nm \"%@\" | grep ' _dlerror'", dyldPath]];
+    output = [self run:[NSString stringWithFormat:@"nm '%@' | grep ' _dlerror'", dyldPath]];
     [[NSScanner scannerWithString:output] scanHexInt:&param->dlerrorPageOffset];
 
     fprintf( logger, "dlopen() offset: 0x%x, dlerror() offset: 0x%x\n", param->dlopenPageOffset, param->dlerrorPageOffset );

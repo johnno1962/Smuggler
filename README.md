@@ -7,9 +7,8 @@ if the current approach using plugins and lldb commands is no longer available.
 
 To use this Project, clone the Repo, select "Smuggler" Scheme and run. This starts a menu bar agent for
 the process. While this app is running you can use the command line tool ~/bin/smuggle to force loading
-of a built bundle or framework into the app after the fact. Error reporting on loading errors is not 
-great unfortunately due how the code has to work. There is a log file created in /tmp/smuggler.log
-and in the event of a dlopen() load error it will be saved to /tmp/smuggler_error.log.
+of a built bundle or framework into the app after the fact. Error reporting is through a log file 
+"/tmp/smuggler.log" which is the place to look for any errors when the payload bundle is dlopen()'d.
 
 ![Icon](http://injectionforxcode.johnholdsworth.com/trace.png)
 
@@ -39,7 +38,7 @@ to classes in the main bundle as well as RxSwift if it is in use.
 
 Note: In order to inject code between processes the Smuggle app installs a "privileged helper".
 The system will ask for your administrator password when you first use it. The helper binary
-can be removed at any time by executing:
+can be removed at any time or to have it update by executing:
 
     sudo rm /Library/PrivilegedHelperTools/com.jh.Smuggler.Helper
 

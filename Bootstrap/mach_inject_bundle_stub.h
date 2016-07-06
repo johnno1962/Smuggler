@@ -9,7 +9,7 @@
 #ifndef		_mach_inject_bundle_stub_
 #define		_mach_inject_bundle_stub_
 
-#include <stddef.h> // for ptrdiff_t
+#define SM_LOGFILE "/tmp/smuggler.log"
 
 typedef	struct	{
 	unsigned    dlopenPageOffset, dlerrorPageOffset;
