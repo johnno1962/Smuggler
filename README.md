@@ -36,11 +36,12 @@ to classes in the main bundle as well as RxSwift if it is in use.
     RxSwift.SingleAssignmentDisposable.dispose () -> ()
     RxSwift.SingleAssignmentDisposable.disposable.setter : RxSwift.Disposable11
 
-In order for your code bundle to perform some action it would normally have a +load or initializer
-something like that of SwiftTrace's main.m. When the bundle is loaded and it's initializer is called
+For your code bundle to perform some action it would normally have a +load or initializer something
+like that of SwiftTrace's main.m below. When the bundle is loaded and it's initializer is called
 the thread's state is somewhat precarious so dispatch any code to one of the application's queues
 to have it execute successfully.
 
+```objc
     @implementation NSObject(SwiftTraceSetup)
 
     + (void)load {
@@ -54,6 +55,7 @@ to have it execute successfully.
     }
 
     @end
+```
 
 Note: In order to inject code between processes the Smuggle app installs a "privileged helper".
 The system will ask for your administrator password when you first use it. The helper binary
