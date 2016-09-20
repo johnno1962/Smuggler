@@ -413,7 +413,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "unset TOOLCHAINS\nexport RESOURCE_DEST=\"$CODESIGNING_FOLDER_PATH/Contents/Resources/SwiftTrace.bundle\"\ncd SwiftTrace && \"$DEVELOPER_BIN_DIR\"/xcodebuild SYMROOT=/tmp/SwitTrace -sdk iphonesimulator -config Debug -arch x86_64";
+			shellScript = "#unset TOOLCHAINS\nexport RESOURCE_DEST=\"$CODESIGNING_FOLDER_PATH/Contents/Resources/SwiftTrace.bundle\"\ncd SwiftTrace && \"$DEVELOPER_BIN_DIR\"/xcodebuild SYMROOT=/tmp/SwiftTrace -sdk iphonesimulator -config Release -arch x86_64";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -596,7 +596,7 @@
 		BB0EFD3A1D1DD08C00FB30CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Bootstrap/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
@@ -610,7 +610,7 @@
 		BB0EFD3B1D1DD08C00FB30CC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Bootstrap/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
