@@ -6,7 +6,7 @@
 //  Copyright © 2016 John Holdsworth. All rights reserved.
 //
 //  Repo: https://github.com/johnno1962/SwiftTrace
-//  $Id: //depot/Smuggler/SwiftTrace/SwiftTrace/SwiftTrace.h#2 $
+//  $Id: //depot/Smuggler/SwiftTrace/SwiftTrace/SwiftTrace.h#3 $
 //
 
 #import <Foundation/Foundation.h>
@@ -27,3 +27,4 @@ extern "C" {
 }
 #endif
 
+#import "Xtrace.h"

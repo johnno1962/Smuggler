@@ -21,10 +21,11 @@ static FILE *logger;
             .stringByDeletingLastPathComponent.stringByDeletingLastPathComponent;
 }
 
-- (mach_error_t)inject:(NSString *)appPath bundle:(NSString *)payload client:(const char *)client {
+- (mach_error_t)inject:(NSString *)appPath bundle:(NSString *)payload client:(const char *)client
+      dlopenPageOffset: (unsigned)dlopenPageOffset dlerrorPageOffset: (unsigned)dlerrorPageOffset {
     assert([[self projectRoot:client] isEqualToString:[self projectRoot:__FILE__]]);
 
-    logger = fopen(SM_LOGFILE, "w");
+    logger = fopen(HELPER_LOGFILE, "w");
     setvbuf(logger, NULL, _IONBF, 0);
     fchmod(fileno(logger), 0666);
 
@@ -52,6 +53,9 @@ static FILE *logger;
 
     size_t paramSize = sizeof( mach_inject_bundle_stub_param ) + strlen( payloadPath );
     mach_inject_bundle_stub_param *param = malloc( paramSize );
+
+    param->dlopenPageOffset = dlopenPageOffset;
+    param->dlerrorPageOffset = dlerrorPageOffset;
     strcpy( param->bundleExecutableFileSystemRepresentation, payloadPath );
 
     char pathBuff[PROC_PIDPATHINFO_MAXSIZE];

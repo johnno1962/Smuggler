@@ -130,7 +130,7 @@ pthread_entry(
         error = ((const char *(*)())(loadAddress + param->dlerrorPageOffset))();
 
     if (error) {
-        int log = open(SM_LOGFILE, O_CREAT|O_WRONLY|O_APPEND, 0666);
+        int log = open(HELPER_LOGFILE, O_CREAT|O_WRONLY|O_APPEND, 0666);
         write(log, error, strlen(error));
         write(log, "\n", 1);
         close(log);

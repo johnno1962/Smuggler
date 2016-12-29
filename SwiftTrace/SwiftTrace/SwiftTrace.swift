@@ -6,66 +6,10 @@
 //  Copyright © 2016 John Holdsworth. All rights reserved.
 //
 //  Repo: https://github.com/johnno1962/SwiftTrace
-//  $Id: //depot/Smuggler/SwiftTrace/SwiftTrace/SwiftTrace.swift#4 $
+//  $Id: //depot/Smuggler/SwiftTrace/SwiftTrace/SwiftTrace.swift#5 $
 //
 
 import Foundation
-
-/** pointer to a function implementing a Swift method */
-typealias SIMP = @convention(c) ( _: AnyObject ) -> Void
-
-/**
-    Layout of a class instance. Needs to be kept in sync with ~swift/include/swift/Runtime/Metadata.h
- */
-private struct ClassMetadataSwift {
-
-    let MetaClass: uintptr_t = 0, SuperClass: uintptr_t = 0
-    let CacheData1: uintptr_t = 0, CacheData2: uintptr_t = 0
-
-    let Data: uintptr_t = 0
-
-    /// Swift-specific class flags.
-    let Flags: UInt32 = 0
-
-    /// The address point of instances of this type.
-    let InstanceAddressPoint: UInt32 = 0
-
-    /// The required size of instances of this type.
-    /// 'InstanceAddressPoint' bytes go before the address point;
-    /// 'InstanceSize - InstanceAddressPoint' bytes go after it.
-    let InstanceSize: UInt32 = 0
-
-    /// The alignment mask of the address point of instances of this type.
-    let InstanceAlignMask: UInt16 = 0
-
-    /// Reserved for runtime use.
-    let Reserved: UInt16 = 0
-
-    /// The total size of the class object, including prefix and suffix
-    /// extents.
-    let ClassSize: UInt32 = 0
-
-    /// The offset of the address point within the class object.
-    let ClassAddressPoint: UInt32 = 0
-
-    /// An out-of-line Swift-specific description of the type, or null
-    /// if this is an artificial subclass.  We currently provide no
-    /// supported mechanism for making a non-artificial subclass
-    /// dynamically.
-    let Description: uintptr_t = 0
-
-    /// A function for destroying instance variables, used to clean up
-    /// after an early return from a constructor.
-    var IVarDestroyer: SIMP? = nil
-
-    // After this come the class members, laid out as follows:
-    //   - class members for the superclass (recursively)
-    //   - metadata reference for the parent, if applicable
-    //   - generic parameters for this class
-    //   - class variables (if we choose to support these)
-    //   - "tabulated" virtual methods
-
-}
 
 /**
     tracer callback called by trampoline before each traced method is called
@@ -270,8 +214,9 @@ public class SwiftTrace: NSObject {
             return
         }
 
-        traceObjcClass(object_getClass( aClass ), isClass: true)
-        traceObjcClass(aClass, isClass: false)
+//        traceObjcClass(object_getClass( aClass ), isClass: true)
+//        traceObjcClass(aClass, isClass: false)
+        Xtrace.traceClass(aClass, levels:1)
 
         let swiftClass = unsafeBitCast(aClass, to: UnsafeMutablePointer<ClassMetadataSwift>.self)
 
@@ -357,35 +302,4 @@ public class SwiftTrace: NSObject {
         }
     }
 
-}
-
-// not public in Swift3
-@_silgen_name("swift_demangle")
-public
-func _stdlib_demangleImpl(
-    mangledName: UnsafePointer<CChar>?,
-    mangledNameLength: UInt,
-    outputBuffer: UnsafeMutablePointer<UInt8>?,
-    outputBufferSize: UnsafeMutablePointer<UInt>?,
-    flags: UInt32
-    ) -> UnsafeMutablePointer<CChar>?
-
-func _stdlib_demangleName(_ mangledName: String) -> String {
-    return mangledName.utf8CString.withUnsafeBufferPointer {
-        (mangledNameUTF8) in
-
-        let demangledNamePtr = _stdlib_demangleImpl(
-            mangledName: mangledNameUTF8.baseAddress,
-            mangledNameLength: UInt(mangledNameUTF8.count - 1),
-            outputBuffer: nil,
-            outputBufferSize: nil,
-            flags: 0)
-
-        if let demangledNamePtr = demangledNamePtr {
-            let demangledName = String(cString: demangledNamePtr)
-            free(demangledNamePtr)
-            return demangledName
-        }
-        return mangledName
-    }
 }

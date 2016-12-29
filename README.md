@@ -8,7 +8,7 @@ if the current approach using plugins and lldb commands is no longer available.
 To use this Project, clone the Repo, select "Smuggler" Scheme and run. This starts a menu bar agent for
 the process. While this app is running you can use the command line tool ~/bin/smuggle to force loading
 of a built bundle or framework into the app after the fact. Error reporting is through a log file 
-"/tmp/smuggler.log" which is the place to look for any errors when the payload bundle is dlopen()'d.
+"/tmp/helper.log" which is the place to look for any errors when the payload bundle is dlopen()'d.
 
 ![Icon](http://injectionforxcode.johnholdsworth.com/trace.png)
 

@@ -7,11 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
-#define HELPER_MACH_ID "com.jh.Smuggler.Helper.mach"
+#import <libproc.h>
 
 @interface Helper : NSObject
 
-- (mach_error_t)inject:(NSString *)appPath bundle:(NSString *)payload client:(const char *)client;
+- (mach_error_t)inject:(NSString *)appPath bundle:(NSString *)payload client:(const char *)client
+      dlopenPageOffset: (unsigned)dlopenPageOffset dlerrorPageOffset: (unsigned)dlerrorPageOffset;
 
 @end

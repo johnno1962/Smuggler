@@ -7,18 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB3413B21E09B15900DA5E5E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB3413B11E09B15900DA5E5E /* UIKit.framework */; };
+		BB356BF81E0C94FC0056B10F /* Internals.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB356BF71E0C94FC0056B10F /* Internals.swift */; };
+		BB356BFB1E0C965D0056B10F /* Xtrace.h in Headers */ = {isa = PBXBuildFile; fileRef = BB356BF91E0C965D0056B10F /* Xtrace.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BB356BFC1E0C965D0056B10F /* Xtrace.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB356BFA1E0C965D0056B10F /* Xtrace.mm */; };
 		BBDFAB881D2AFEA8006EDDF0 /* SwiftTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = BBDFAB871D2AFEA8006EDDF0 /* SwiftTrace.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BBDFAB9C1D2B0235006EDDF0 /* SwiftTrace.mm in Sources */ = {isa = PBXBuildFile; fileRef = BBDFAB961D2B0235006EDDF0 /* SwiftTrace.mm */; };
+		BBDFAB9C1D2B0235006EDDF0 /* SwiftTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDFAB961D2B0235006EDDF0 /* SwiftTrace.m */; };
 		BBDFAB9D1D2B0235006EDDF0 /* SwiftTrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDFAB971D2B0235006EDDF0 /* SwiftTrace.swift */; };
 		BBDFABA01D2B0235006EDDF0 /* xt_forwarding_trampoline_x64.s in Sources */ = {isa = PBXBuildFile; fileRef = BBDFAB9A1D2B0235006EDDF0 /* xt_forwarding_trampoline_x64.s */; };
 		BBDFABA31D2B028F006EDDF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBDFABA21D2B028F006EDDF0 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB3413B11E09B15900DA5E5E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BB356BF71E0C94FC0056B10F /* Internals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Internals.swift; sourceTree = "<group>"; };
+		BB356BF91E0C965D0056B10F /* Xtrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xtrace.h; sourceTree = "<group>"; };
+		BB356BFA1E0C965D0056B10F /* Xtrace.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Xtrace.mm; sourceTree = "<group>"; };
 		BBDFAB841D2AFEA8006EDDF0 /* SwiftTrace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftTrace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBDFAB871D2AFEA8006EDDF0 /* SwiftTrace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftTrace.h; sourceTree = "<group>"; };
 		BBDFAB891D2AFEA8006EDDF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BBDFAB961D2B0235006EDDF0 /* SwiftTrace.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SwiftTrace.mm; sourceTree = "<group>"; };
+		BBDFAB961D2B0235006EDDF0 /* SwiftTrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwiftTrace.m; sourceTree = "<group>"; };
 		BBDFAB971D2B0235006EDDF0 /* SwiftTrace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTrace.swift; sourceTree = "<group>"; };
 		BBDFAB9A1D2B0235006EDDF0 /* xt_forwarding_trampoline_x64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = xt_forwarding_trampoline_x64.s; sourceTree = "<group>"; };
 		BBDFABA21D2B028F006EDDF0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -29,17 +37,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB3413B21E09B15900DA5E5E /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB3413B01E09B15900DA5E5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BB3413B11E09B15900DA5E5E /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BBDFAB7A1D2AFEA8006EDDF0 = {
 			isa = PBXGroup;
 			children = (
 				BBDFAB861D2AFEA8006EDDF0 /* SwiftTrace */,
 				BBDFAB851D2AFEA8006EDDF0 /* Products */,
+				BB3413B01E09B15900DA5E5E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,8 +74,11 @@
 			children = (
 				BBDFABA21D2B028F006EDDF0 /* main.m */,
 				BBDFAB891D2AFEA8006EDDF0 /* Info.plist */,
+				BB356BF91E0C965D0056B10F /* Xtrace.h */,
+				BB356BFA1E0C965D0056B10F /* Xtrace.mm */,
 				BBDFAB871D2AFEA8006EDDF0 /* SwiftTrace.h */,
-				BBDFAB961D2B0235006EDDF0 /* SwiftTrace.mm */,
+				BBDFAB961D2B0235006EDDF0 /* SwiftTrace.m */,
+				BB356BF71E0C94FC0056B10F /* Internals.swift */,
 				BBDFAB971D2B0235006EDDF0 /* SwiftTrace.swift */,
 				BBDFAB9A1D2B0235006EDDF0 /* xt_forwarding_trampoline_x64.s */,
 			);
@@ -72,6 +93,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBDFAB881D2AFEA8006EDDF0 /* SwiftTrace.h in Headers */,
+				BB356BFB1E0C965D0056B10F /* Xtrace.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +130,7 @@
 				TargetAttributes = {
 					BBDFAB831D2AFEA8006EDDF0 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 9V5A8WE85E;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -161,7 +184,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBDFAB9C1D2B0235006EDDF0 /* SwiftTrace.mm in Sources */,
+				BB356BFC1E0C965D0056B10F /* Xtrace.mm in Sources */,
+				BB356BF81E0C94FC0056B10F /* Internals.swift in Sources */,
+				BBDFAB9C1D2B0235006EDDF0 /* SwiftTrace.m in Sources */,
 				BBDFAB9D1D2B0235006EDDF0 /* SwiftTrace.swift in Sources */,
 				BBDFABA01D2B0235006EDDF0 /* xt_forwarding_trampoline_x64.s in Sources */,
 				BBDFABA31D2B028F006EDDF0 /* main.m in Sources */,
@@ -269,6 +294,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9V5A8WE85E;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -290,9 +316,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9V5A8WE85E;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				HEADER_SEARCH_PATHS = "$(CODESIGNING_FOLDER_PATH)/Headers";
 				INFOPLIST_FILE = SwiftTrace/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

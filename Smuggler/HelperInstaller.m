@@ -11,10 +11,14 @@
 
 @implementation HelperInstaller
 
-static NSString *const kInjectionHelperID = @"com.jh.Smuggler.Helper";
+//static NSString *const kInjectionHelperID = @"com.jh.Smuggler.Helper";
+
++ (NSString *)kInjectionHelperID {
+    return [[[[NSBundle mainBundle] infoDictionary] valueForKey:(NSString *)kCFBundleIdentifierKey] stringByAppendingString:@".Helper"];
+}
 
 + (BOOL)isInstalled {
-    NSString *helperPath = [@"/Library/PrivilegedHelperTools" stringByAppendingPathComponent:kInjectionHelperID];
+    NSString *helperPath = [@"/Library/PrivilegedHelperTools" stringByAppendingPathComponent:[self kInjectionHelperID]];
     return [[NSFileManager defaultManager] fileExistsAtPath:helperPath];
 }
 
@@ -23,7 +27,7 @@ static NSString *const kInjectionHelperID = @"com.jh.Smuggler.Helper";
     BOOL result = [self askPermission:&authRef error:error];
 
     if (result == YES) {
-        result = [self installHelperTool:kInjectionHelperID authorizationRef:authRef error:error];
+        result = [self installHelperTool:[self kInjectionHelperID] authorizationRef:authRef error:error];
     }
 
     if (result == YES) {
