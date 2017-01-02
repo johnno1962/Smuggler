@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Internals.swift
 //  XprobeSwift
 //
 //  Created by John Holdsworth on 22/12/2016.
