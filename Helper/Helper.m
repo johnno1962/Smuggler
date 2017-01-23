@@ -42,8 +42,8 @@ static FILE *logger;
     NSBundle *payloadBundle = [NSBundle bundleWithPath:payload];
     fprintf( logger, "payloadBundle: %p\n", payloadBundle );
     if (!payloadBundle) {
-        fprintf( logger, "Could not loda payload bundle: %s\n", [payload UTF8String] );
-        return 0;
+        fprintf( logger, "Could not init payload bundle: %s\n", [payload UTF8String] );
+        return SMHelperErrorsPayload;
     }
 
     const char *payloadPath = payloadBundle.executablePath.fileSystemRepresentation;
@@ -65,7 +65,7 @@ static FILE *logger;
     fprintf( logger, "pathBuff: %d %s\n", pid, pathBuff );
     if( pid <= 0 ) {
         fprintf( logger, "Simulator does not seem to be running\n" );
-        return 0;
+        return SMHelperErrorsNoSim;
     }
 
     NSString *simPath = [NSString stringWithUTF8String:pathBuff];
@@ -82,11 +82,15 @@ static FILE *logger;
     [[NSScanner scannerWithString:output] scanHexInt:&param->dlerrorPageOffset];
 
     fprintf( logger, "dlopen() offset: 0x%x, dlerror() offset: 0x%x\n", param->dlopenPageOffset, param->dlerrorPageOffset );
+    if( !param->dlopenPageOffset || !param->dlerrorPageOffset ) {
+        fprintf( logger, "Could not locate locate dlopen() offset, is xcode-select correct\n" );
+        return SMHelperErrorsNoNm;
+    }
 
     pid = [self pidContaining:"/data/Containers/Bundle/Application/" returning:NULL];
     if( pid <= 0 ) {
         fprintf( logger, "Could not locate app running in simulator\n" );
-        return 0;
+        return SMHelperErrorsNoApp;
     }
 
     fclose( logger );

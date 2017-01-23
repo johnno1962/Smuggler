@@ -29,13 +29,22 @@ static unsigned dlopenPageOffset, dlerrorPageOffset;
         NSLog(@"Injected Simulator");
         return YES;
     } else {
-        NSString *description = [NSString stringWithCString:mach_error_string(err) encoding:NSASCIIStringEncoding];
+        NSString *description;
+        switch( err ) {
+            case SMHelperErrorsPayload: description = @"Unable to init payload"; break;
+            case SMHelperErrorsNoSim:   description = @"Simulator is not running"; break;
+            case SMHelperErrorsNoNm:    description = @"Unable to find dlopen. Is xcode-select correct?"; break;
+            case SMHelperErrorsNoApp:   description = @"Could not find App running in simulator"; break;
+            case SMHelperErrors32Bits:  description = @"Injection only possible for 64 bit targets"; break;
+            default:
+                description = [NSString stringWithCString:mach_error_string(err) ?: "Unkown mach error" encoding:NSASCIIStringEncoding];
+        }
+
         NSLog(@"an error occurred while injecting Simulator: %@ (error code: %d)", description, (int)err);
 
         *error = [NSError errorWithDomain:[NSBundle mainBundle].bundleIdentifier
                                      code:err
                                  userInfo:@{NSLocalizedDescriptionKey: description}];
-        
         return NO;
     }
 }
