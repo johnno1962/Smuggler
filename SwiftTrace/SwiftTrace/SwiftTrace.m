@@ -74,9 +74,9 @@ typedef struct {
     SPLForwardingTrampolineEntryPointBlock trampolineEntryPoints[numberOfTrampolinesPerPage];
 } SPLForwardingTrampolinePage;
 
-check_compile_time(sizeof(SPLForwardingTrampolineEntryPointBlock) == sizeof(XtraceTrampolineDataBlock));
-check_compile_time(sizeof(SPLForwardingTrampolinePage) == 2 * PAGE_SIZE);
-check_compile_time(offsetof(SPLForwardingTrampolinePage, trampolineInstructions) == PAGE_SIZE);
+__Check_Compile_Time(sizeof(SPLForwardingTrampolineEntryPointBlock) == sizeof(XtraceTrampolineDataBlock));
+__Check_Compile_Time(sizeof(SPLForwardingTrampolinePage) == 2 * PAGE_SIZE);
+__Check_Compile_Time(offsetof(SPLForwardingTrampolinePage, trampolineInstructions) == PAGE_SIZE);
 
 static SPLForwardingTrampolinePage *SPLForwardingTrampolinePageAlloc()
 {
